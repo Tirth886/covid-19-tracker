@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+       
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    <title>COVID-19 Tracker</title>
+</head>
+
+<body>
+    <!-- Header -->
+    <section class="header-nav">
+        <div class="container-fluid p-0">
+            <nav class="navbar navbar-dark bg-primary nav-setting">
+                <a class="navbar-brand" href="http://codexsite.com"><img
+                        src="http://codexsite.com/assets/images/logo/logo-white.png" width="105"></a>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Total Historical Data -->
+    <section class="historical-data mt-3">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <div class="container show-cases-container p-3">
+                        <div class="px-3 text-center">
+                            <p class="font-total-heading p-0 m-0 opacity-0-7">Total Affected Countries</p>
+                            <p class="font-number size-total-number p-0" id="affectedCountries"></p>
+                        </div>
+                        <div class="px-3 mb-4 text-center">
+                            <p class="font-total-heading p-0 m-0 opacity-0-7">Total Confirmed Cases</p>
+                            <p class="font-number size-total-number p-0 position-relative" id="cases"></p>
+                        </div>
+                        <div class="p-0 mt-5">
+                            <div class="mb-4">
+                                <span class="p-1 dot-cases"></span>
+                                <span class="ml-2 font-total-heading opacity-0-7"><strong>Active Cases</strong></span>
+                                <span class="float-right size-total-number dot-cases px-3" id="active-cases"></span>
+                            </div>
+                            <div class="mb-4">
+                                <span class="p-1 dot-recover"></span>
+                                <span class="ml-2 font-total-heading opacity-0-7"><strong>Recover Cases</strong></span>
+                                <span class="float-right size-total-number dot-recover px-3 " id="recovered-cases"></span>
+                            </div>
+                            <div class="mb-4">
+                                <span class="p-1 dot-death"></span>
+                                <span class="ml-2 font-total-heading opacity-0-7"><strong>Fatal
+                                        Cases</strong></span>
+                                <span style="color: red;font-weight: 900;font-size: small;" id="todaydeath"></span>
+                                <span class="float-right size-total-number dot-death px-3" id="fatal-cases"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 d-md-block d-none">
+                    <div class="container show-cases-container position-relative h-100">
+                        <div class="plotlybars-wrapper position-absolute bottom-0 right-0 left-0 " style="top: 50%;">
+                            <div class="plotlybars">
+                              <div class="plotlybars-bar b1"></div>
+                              <div class="plotlybars-bar b2"></div>
+                              <div class="plotlybars-bar b3"></div>
+                              <div class="plotlybars-bar b4"></div>
+                              <div class="plotlybars-bar b5"></div>
+                              <div class="plotlybars-bar b6"></div>
+                              <div class="plotlybars-bar b7"></div>
+                            </div>
+                            <div class="plotlybars-text">
+                              loading
+                            </div>
+                        </div>
+                        <div id="historical-data"></div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+
+
+    <!-- Daily Increase in Rate (Confirmed | Deaths | Recovered) -->
+    <section class="mt-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="container show-cases-container">
+                        <div id="confirmed"></div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="container show-cases-container">
+                        <div id="recovered"></div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="container show-cases-container">
+                        <div id="deaths"></div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </section>
+    
+    <!-- Country WIse LIST -->
+    <section class="mt-5 mb-5">
+        <div class="container-fluid mt-5 p-3">
+            <div class="container-fluid p-0 show-cases-container d-block">
+                <div class="container-fluid border-bottom-1 d-flex pt-1 pb-1">
+                    <div class="form-group w-50 mr-5">
+                        <span for="country1" style="font-size: 10px;">Select Country</span>
+                        <select class="form-control" id="country1" name="sellist1">
+                            <option value="all">All</option>
+                        </select>
+                    </div>
+                    <div class="w-50 mr-5 pt-4 text-center">
+                        <strong style="font-size:12px;color: #636669;">COUNTRY WISE HISTORICAL DATA</strong>
+                    </div>
+                    <div class="form-group w-50"></div>
+
+                </div>
+                <div class="container-fluid p-0 d-block max-height-table" id="datatable">
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js"></script>
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script src="./main.js"></script>
+</body>
+
+</html>

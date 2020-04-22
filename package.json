@@ -1,0 +1,18 @@
+{
+  "name": "covid-19",
+  "version": "1.0.0",
+  "description": "Corona virus Covid-19 Tracker",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "codexsite",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+  "dependencies": {
+    "request": "^2.88.2"
+  }
+}
